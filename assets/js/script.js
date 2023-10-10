@@ -3,11 +3,13 @@
     const $slidesArray = $slides.toArray()
     const $slidesToggleUpButton = $('[data-slide-toggle="up"]')
     const $slidesToggleDownButton = $('[data-slide-toggle="down"]')
-    // const $slidesToggleDownButton = $('[data-form-inner="btn"]')
-    const $slidesInnerFields = $('[data-form-inner="input"]')
 
     function ifAllItemsTrue(arr) {
         return arr.every(element => element === true);
+    }
+    
+    function ifOneItemsTrue(arr) {
+        return arr.some(item => item === true);
     }
 
     function slidePositionSet(){
@@ -62,6 +64,8 @@
         }else{
             $slidesToggleUpButton.removeAttr('disabled')
         }
+
+        checkCurrentFormFieldsValidOrNotOnInput()
     }
 
     function calculateVerticalHeight(){
@@ -70,36 +74,39 @@
     }
 
     function checkCurrentFormFieldsValidOrNot(){
-        $('[data-form="inner"]').each(function(){
-            let $currentSlidesInnerFields = $(this).find('[data-form-inner="input"]')
-            let currentSlidesInnerFieldsArray = []
-            $currentSlidesInnerFields.each(function(inputsIndex, inputsItem){
-                currentSlidesInnerFieldsArray.push(inputsItem.checkValidity())
-            })
-            if(ifAllItemsTrue(currentSlidesInnerFieldsArray)){
-                $slidesToggleDownButton.removeAttr('disabled')
-            }else{
-                $slidesToggleDownButton.prop('disabled', true)
+        let $currentSlidesInnerFields = $('[data-slide].active [data-form="inner"] [data-form-inner="input"]')
+        let currentSlidesInnerFieldsArray = []
+        let currentCheckboxArray = []
+        $currentSlidesInnerFields.each(function(inputsIndex, inputsItem){
+            if(inputsItem.type == 'checkbox'){
+                currentCheckboxArray.push(inputsItem.checked)
+                console.log(currentCheckboxArray);
+                console.log(currentSlidesInnerFieldsArray);
+                console.log(ifOneItemsTrue(currentCheckboxArray));
+                console.log(ifAllItemsTrue(currentSlidesInnerFieldsArray));
+                
+                if(ifOneItemsTrue(currentCheckboxArray)){
+                    currentSlidesInnerFieldsArray.push(true)
+                }else{
+                    currentSlidesInnerFieldsArray.push(false)
+                }
             }
+            else{
+                currentSlidesInnerFieldsArray.push(inputsItem.checkValidity())
+            }
+        })
 
-            console.log(currentSlidesInnerFieldsArray);
-        }) 
+        if(ifAllItemsTrue(currentSlidesInnerFieldsArray)){
+            $slidesToggleDownButton.removeAttr('disabled')
+        }else{
+            $slidesToggleDownButton.prop('disabled', true)
+        }
     }
 
     function checkCurrentFormFieldsValidOrNotOnInput(){
-        $('[data-form="inner"]').each(function(){
-            let $currentSlidesInnerFields = $(this).find('[data-form-inner="input"]')
-            $currentSlidesInnerFields.on('input', function(){
-                let currentSlidesInnerFieldsArray = []
-                $currentSlidesInnerFields.each(function(inputsIndex, inputsItem){
-                    currentSlidesInnerFieldsArray.push(inputsItem.checkValidity())
-                })
-                if(ifAllItemsTrue(currentSlidesInnerFieldsArray)){
-                    $slidesToggleDownButton.removeAttr('disabled')
-                }else{
-                    $slidesToggleDownButton.prop('disabled', true)
-                }
-            })
+        let $currentSlidesInnerFields = $('[data-slide].active [data-form="inner"] [data-form-inner="input"]')
+        $currentSlidesInnerFields.on('input', function(){
+            checkCurrentFormFieldsValidOrNot()
         })
     }
 
@@ -111,7 +118,7 @@
         calculateVerticalHeight()
         slidePositionUpdate()
         checkCurrentFormFieldsValidOrNot()
-        checkCurrentFormFieldsValidOrNotOnInput()
+
         $slidesToggleUpButton.on("click", function(){
             let $activeSlide = $('[data-slide].active')
             let [prevPosition, nextPosition] = slidePositionSet()
@@ -120,24 +127,13 @@
             slidePositionUpdate()
             checkCurrentFormFieldsValidOrNot()
         })
+
         $slidesToggleDownButton.on("click", function(){
             let $activeSlide = $('[data-slide].active')
             let [prevPosition, nextPosition] = slidePositionSet()
             $activeSlide.removeClass("active")
             $(nextPosition).addClass("active")
             slidePositionUpdate()
-
-            // let $currentSlidesInnerFields = $(this).closest('[data-form="inner"]').find('[data-form-inner="input"]')
-            // let currentSlidesInnerFieldsArray = []
-            // $currentSlidesInnerFields.each(function(inputsIndex, inputsItem){
-            //     currentSlidesInnerFieldsArray.push(inputsItem.checkValidity())
-            // })
-            // if(ifAllItemsTrue(currentSlidesInnerFieldsArray)){
-            //     $(this).removeAttr('disabled')
-            // }else{
-            //     $(this).prop('disabled', true)
-            // }
-
             checkCurrentFormFieldsValidOrNot()
         })
         
