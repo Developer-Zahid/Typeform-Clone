@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type Form Clone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.min.css">
+</head>
+<body>
+    <section class="section">
+        <aside class="section__aside">
+            <img class="section__aside__bg" src="https://images.unsplash.com/photo-1600595289052-bcab428c5b82" alt="flower" loading="lazy">
+        </aside>
+        <main class="section__main">
+            <div class="form-slider" data-slider>
+                <div class="form-slide active" data-slide>
+                    <div class="form-content" data-form="inner">
+                        <h1>Question 1 *</h1>
+                        <input type="text" class="input" data-form-inner="input" placeholder="Name" required>
+                        <button type="button" data-form-inner="btn" data-slide-toggle="down" class="btn">Next</button>
+                    </div>
+                </div>
+                <div class="form-slide" data-slide>
+                    <div class="form-content">
+                        <div class="form-content" data-form="inner">
+                            <h1>Question 2 *</h1>
+                            <input type="email" class="input" data-form-inner="input" placeholder="email" required>
+                            <button type="button" data-form-inner="btn" data-slide-toggle="down" class="btn">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-slide" data-slide>
+                    <div class="form-content">
+                        <h1>Hello Form 3</h1>
+                    </div>
+                </div>
+                <div class="form-slide" data-slide>
+                    <div class="form-content">
+                        <h1>Hello Form 4</h1>
+                    </div>
+                </div>
+                <div class="form-slide" data-slide>
+                    <div class="form-content">
+                        <h1>Hello Form 5</h1>
+                    </div>
+                </div>
+            </div>
+            <nav class="form-navigation">
+                <button type="button" class="form-navigation__btn form-navigation__btn--up" data-slide-toggle="up">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                    </svg>
+                </button>
+                <button type="button" class="form-navigation__btn form-navigation__btn--down" data-slide-toggle="down">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            </nav>
+        </main>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

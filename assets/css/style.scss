@@ -1,0 +1,225 @@
+$font-primary: var(--font-primary);
+$color-text: var(--color-text);
+$color-white: #ffffff;
+$slideEasingFunction: var(--slide-easing-function);
+
+@function color($lightness: var(--color-primary-l)){
+    @return hsl(var(--color-primary-hs), $lightness)
+};
+
+:root{
+    --color-primary-hs: 217, 96%;
+    --color-primary-l: 35%;
+    --color-text: #111111;
+    --font-primary: 'Open Sans', sans-serif;
+    --slide-easing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-primary;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+%w-100{
+    width: 100%;
+}
+
+%h-100{
+    height: 100%;
+}
+
+html,
+body
+{
+    @extend %w-100;
+    @extend %h-100;
+}
+
+html{
+    font-size: 10px;
+}
+
+body{
+    color: $color-text;
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+img{
+    object-fit: cover;
+    max-width: 100%;
+    display: block;
+}
+
+a,
+button
+{
+    font-family: inherit;
+}
+
+@mixin hover{
+    @media (hover: hover) {
+        &:hover,
+        &:focus-visible
+        {
+            @content
+        }
+    }
+};
+
+.section{
+    @extend %h-100;
+    overflow: hidden;
+
+    &__aside{
+        position: fixed;
+        top: 0;
+        left: 0;
+        @media (max-width: 767.98px) {
+            display: none;
+        }
+        
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            right:0;
+            height: calc(var(--vh,1vh) * 30);
+            background-color: color();
+        }
+
+        @media (min-width: 992px) {
+            right: 50%;
+            bottom: 0;
+        }
+
+        &__bg{
+            position: absolute;
+            top: 0;
+            left: 0;
+            @extend %w-100;
+            @extend %h-100;
+            object-position: bottom;
+            @media (min-width: 992px){
+                object-position: top;
+            }
+        }
+        
+    }
+
+    &__main{
+        @extend %h-100;
+        @media (min-width: 768px) and (max-width: 991.98px){
+            margin-top: calc(var(--vh,1vh) * 30);
+            height: calc(var(--vh,1vh) * (100 - 30));
+        }
+        @media (min-width: 992px){
+            margin-left: 50%;
+        }
+    }
+}
+
+.form{
+    &-slider{
+        overflow: hidden;
+        position: relative;
+        @extend %h-100;
+        @extend %w-100;
+    }
+    
+    &-slide{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        transform: translateY(calc(var(--slide-index, 0) * 100%));
+        transition:
+            opacity 0.6s linear,
+            transform 0.8s $slideEasingFunction;
+
+        &.active{
+            opacity: 1;
+        }
+    }
+
+    &-navigation{
+        $_radius: 5px;
+        position: absolute;
+        right: 1.5rem;
+        bottom: 1.5rem;
+        display: flex;
+        gap: 1px;
+        background-color: $color-white;
+        border-radius: $_radius;
+        
+        &__btn{
+            width: 4rem;
+            aspect-ratio: 4/3.5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            line-height: 0;
+            color: $color-white;
+            background-color: color();
+            border: 0;
+            cursor: pointer;
+            transition: background-color .15s ease-in-out;
+
+            @include hover{
+                background-color: color(55%);
+            }
+
+            &:active{
+                background-color: color(25%);
+            }
+
+            &:disabled{
+                background-color: color(15%);
+                cursor: not-allowed;
+            }
+
+            &--up{
+                border-top-left-radius: $_radius;
+                border-bottom-left-radius: $_radius;
+            }
+            &--down{
+                border-top-right-radius: $_radius;
+                border-bottom-right-radius: $_radius;
+            }
+        }
+    }
+
+    &-content{
+        padding: 2rem;
+        @extend %h-100;
+    }
+}
+
+.input{
+    width: 100%;
+    display: block;
+    padding: 10px;
+    margin-block: 10px;
+}
+
+.btn{
+    padding: 1rem 2rem;
+    color: $color-white;
+    background-color: color();
+    font-size: 2rem;
+    font-weight: 700;
+    border: 0;
+    cursor: pointer;
+    border-radius: 5px;
+    
+    &:disabled{
+        background-color: color(85%);
+    }
+}
