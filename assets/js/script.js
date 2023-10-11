@@ -7,10 +7,6 @@
     function ifAllItemsTrue(arr) {
         return arr.every(element => element === true);
     }
-    
-    function ifOneItemsTrue(arr) {
-        return arr.some(item => item === true);
-    }
 
     function slidePositionSet(){
         let $activeSlide = $('[data-slide].active').get(0)
@@ -136,14 +132,16 @@
             checkCurrentFormFieldsValidOrNot()
         })
 
-        $('[data-form-inner="input"]').each(function(){
+        $('[data-form-inner="input"]:not(textarea)').each(function(){
             $(this).on('keydown', function(event){
                 if (event.key === 'Enter') {
                     return false
-                    // event.preventDefault();
-                    // event.stopPropagation();
                 }
             })
+        })
+        $('[data-slide].active [data-form="inner"] textarea[data-form-inner="input"]').on('input', function(){
+            $(this).css('height', 'auto')
+            $(this).css('height', $(this).get(0).scrollHeight + 'px')
         })
     });
   

@@ -112,9 +112,6 @@ button
     }
 
     &__main{
-        position: fixed;
-        top: 0;
-        left: 0;
         @extend %h-100;
         @media (min-width: 768px) and (max-width: 991.98px){
             margin-top: calc(var(--vh,1vh) * 30);
@@ -142,14 +139,13 @@ button
         @extend %h-100;
         @extend %w-100;
         opacity: 0;
-        transform: translateX(0) translateY(calc(var(--slide-index, 0) * 100%));
+        transform: translateY(calc(var(--slide-index, 0) * 100%));
         transition:
             opacity 0.6s linear,
             transform 0.8s $slideEasingFunction;
 
         &.active{
             opacity: 1;
-            transform: translateX(0) translateY(0);
         }
     }
 
