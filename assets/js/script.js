@@ -76,24 +76,23 @@
     function checkCurrentFormFieldsValidOrNot(){
         let $currentSlidesInnerFields = $('[data-slide].active [data-form="inner"] [data-form-inner="input"]')
         let currentSlidesInnerFieldsArray = []
-        let currentCheckboxArray = []
+        let $currentSlidesInnerFieldsRequired = $('[data-slide].active [data-form="inner"]')
         $currentSlidesInnerFields.each(function(inputsIndex, inputsItem){
             if(inputsItem.type == 'checkbox'){
-                currentCheckboxArray.push(inputsItem.checked)
-                console.log(currentCheckboxArray);
-                console.log(currentSlidesInnerFieldsArray);
-                console.log(ifOneItemsTrue(currentCheckboxArray));
-                console.log(ifAllItemsTrue(currentSlidesInnerFieldsArray));
-                
-                if(ifOneItemsTrue(currentCheckboxArray)){
-                    currentSlidesInnerFieldsArray.push(true)
+                if(typeof $currentSlidesInnerFieldsRequired.data('input-required') !== 'undefined'){
+                    const currentTotalChecked = $('[data-slide].active [data-form="inner"] [data-form-inner="input"]:checked')
+                    if(currentTotalChecked.length === 0) {
+                        currentSlidesInnerFieldsArray.push(false)
+                    }else{
+                        currentSlidesInnerFieldsArray.push(true)
+                    }
                 }else{
-                    currentSlidesInnerFieldsArray.push(false)
+                    currentSlidesInnerFieldsArray.push(true)
                 }
-            }
-            else{
+            }else{
                 currentSlidesInnerFieldsArray.push(inputsItem.checkValidity())
             }
+
         })
 
         if(ifAllItemsTrue(currentSlidesInnerFieldsArray)){
