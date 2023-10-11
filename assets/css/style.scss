@@ -109,8 +109,10 @@ button
             position: absolute;
             top: 0;
             left: 0;
+            pointer-events: none;
+            user-select: none;
             @extend %w-100;
-            @extend %h-100;
+            height: 100%;
             object-position: bottom;
             @media (min-width: 992px){
                 object-position: top;
@@ -137,16 +139,16 @@ button
         counter-reset: questionNumber;
         overflow: hidden;
         position: relative;
-        @extend %h-100;
         @extend %w-100;
+        height: 100%;
     }
     
     &-slide{
         position: absolute;
         top: 0;
         left: 0;
-        @extend %h-100;
         @extend %w-100;
+        height: 100%;
         opacity: 0;
         visibility: hidden;
         transform: translateY(calc(var(--slide-index, 0) * 100%));
@@ -212,18 +214,26 @@ button
     &-content{
         overflow: auto;
         padding: 2rem;
-        @extend %h-100;
+        display: flex;
+        height: 100%;
 
         &__question{
             display: flex;
             align-items: flex-start;
             gap: 5px;
+            margin-top: auto;
+            margin-bottom: auto;
+            @extend %w-100;
+            
 
             &__count{
                 flex-shrink: 0;
                 display: inline-flex;
                 align-items: center;
-                font-size: 2rem;
+                font-size: 1.4rem;
+                @media (min-width: 576px) {
+                    font-size: 2rem;
+                }
                 font-weight: 600;
                 color: color();
                 line-height: 1;
@@ -244,7 +254,10 @@ button
             }
 
             &__title{
-                font-size: 2.4rem;
+                font-size: 2rem;
+                @media (min-width: 576px) {
+                    font-size: 2.4rem;
+                }
                 font-weight: 500;
                 margin-bottom: 2.5rem;
             }
@@ -252,7 +265,10 @@ button
             &__input{
                 display: block;
                 width: 100%;
-                font-size: 2.8rem;
+                font-size: 1.8rem;
+                @media (min-width: 576px) {
+                    font-size: 2.8rem;
+                }
                 color: color();
                 background-color: $color-white;
                 transition:
@@ -274,6 +290,10 @@ button
                     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%230445af' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
                     background-position: calc(100% - 1.5rem) center;
                     background-repeat: no-repeat;
+
+                    option{
+                        font-size: 0.8em;
+                    }
                 }
 
                 &--number{
