@@ -135,6 +135,16 @@
             slidePositionUpdate()
             checkCurrentFormFieldsValidOrNot()
         })
-        
+
+        $('[data-form-inner="input"]').each(function(){
+            $(this).on('keydown', function(event){
+                if (event.key === 'Enter') {
+                    return false
+                    // event.preventDefault();
+                    // event.stopPropagation();
+                }
+            })
+        })
     });
+  
 })()
