@@ -1,5 +1,6 @@
 $font-primary: var(--font-primary);
 $color-text: var(--color-text);
+$color-danger: var(--color-danger);
 $color-white: #ffffff;
 $slideEasingFunction: var(--slide-easing-function);
 
@@ -11,6 +12,7 @@ $slideEasingFunction: var(--slide-easing-function);
     --color-primary-hs: 217, 96%;
     --color-primary-l: 35%;
     --color-text: #111111;
+    --color-danger: #ff5252;
     --font-primary: 'Open Sans', sans-serif;
     --slide-easing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -64,6 +66,10 @@ button
     font-family: inherit;
 }
 
+.text-danger{
+    color: $color-danger;
+}
+
 @mixin hover{
     @media (hover: hover) {
         &:hover,
@@ -74,6 +80,7 @@ button
     }
 };
 
+
 .section{
     @extend %h-100;
     overflow: hidden;
@@ -82,6 +89,7 @@ button
         position: fixed;
         top: 0;
         left: 0;
+        background-color: color(80%);
         @media (max-width: 767.98px) {
             display: none;
         }
@@ -126,6 +134,7 @@ button
 
 .form{
     &-slider{
+        counter-reset: questionNumber;
         overflow: hidden;
         position: relative;
         @extend %h-100;
@@ -139,13 +148,16 @@ button
         @extend %h-100;
         @extend %w-100;
         opacity: 0;
+        visibility: hidden;
         transform: translateY(calc(var(--slide-index, 0) * 100%));
         transition:
+            visibility 0.6s linear,
             opacity 0.6s linear,
             transform 0.8s $slideEasingFunction;
 
         &.active{
             opacity: 1;
+            visibility: visible;
         }
     }
 
@@ -201,28 +213,181 @@ button
         overflow: auto;
         padding: 2rem;
         @extend %h-100;
-    }
-}
 
-.input{
-    width: 100%;
-    display: block;
-    padding: 10px;
-    margin-block: 10px;
-}
+        &__question{
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
 
-.btn{
-    padding: 1rem 2rem;
-    color: $color-white;
-    background-color: color();
-    font-size: 2rem;
-    font-weight: 700;
-    border: 0;
-    cursor: pointer;
-    border-radius: 5px;
+            &__count{
+                flex-shrink: 0;
+                display: inline-flex;
+                align-items: center;
+                font-size: 2rem;
+                font-weight: 600;
+                color: color();
+                line-height: 1;
+                padding-top: 5px;
+
+                &::before{
+                    counter-increment: questionNumber;
+                    content: counter(questionNumber);
+                }
+
+                &__arrow{
+                    font-size: 1.3em;
+                }
+            }
+
+            &__main{
+                flex-grow: 1;
+            }
+
+            &__title{
+                font-size: 2.4rem;
+                font-weight: 500;
+                margin-bottom: 2.5rem;
+            }
+
+            &__input{
+                display: block;
+                width: 100%;
+                font-size: 2.8rem;
+                color: color();
+                background-color: $color-white;
+                transition:
+                    border 0.1s ease-out 0s,
+                    box-shadow 0.1s ease-out 0s;
+                margin-bottom: 1rem;
+                border: 0;
+                border-bottom: 1px solid color(85%);
+                padding-bottom: 5px;
+
+                &--textarea{
+                    resize: none;
+                    overflow: hidden;
+                }
+
+                &--select{
+                    appearance: none;
+                    cursor: pointer;
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%230445af' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+                    background-position: calc(100% - 1.5rem) center;
+                    background-repeat: no-repeat;
+                }
+
+                &--number{
+                    appearance: textfield;
+                }
+
+                &:focus{
+                    border-bottom-color: color();
+                    box-shadow: 0 1px 0 color();
+                }
+
+                &::placeholder{
+                    opacity: 1;
+                    color: color(85%);
+                } 
+            }
+
+            &__option{
+                &-list{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 1rem;
+                }
+                display: block;
+
+                
+                &__input{
+                    position: absolute;
+                    appearance: none;
+                    opacity: 0;
+
+                    &:checked ~ {
+                        .form-content__question__option__text{
+                            border-color: color();
+                            &::before{
+                                background-color: color();
+                                border-color: color();
+                                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ffffff' class='bi bi-check-lg' viewBox='0 0 16 16'%3E%3Cpath d='M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z'/%3E%3C/svg%3E");
+                                background-size: contain;
+                                background-position: center;
+                            }
+                        }
+                    }
+
+                    &:focus-visible{
+                        ~ .form-content__question__option__text{
+                            background-color: color(88%);
+                        }
+                    }
+                }
+                
+                &__text{
+                    position: relative;
+                    display: inline-flex;
+                    align-items: center;
+                    padding: 6px;
+                    gap: 8px;
+                    color: color();
+                    font-size: 1.8rem;
+                    font-weight: 500;
+                    border: 1px solid color(70%);
+                    background-color: color(96%);
+                    border-radius: 5px;
+                    cursor: pointer;
+                    min-width: 19rem;
+                    transition: all .2s ease-in-out;
+
+                    &::before{
+                        content: '';
+                        display: inline-block;
+                        width: 2rem;
+                        aspect-ratio: 1;
+                        background-color: $color-white;
+                        border: 1px solid color(70%);
+                        border-radius: 3px;
+                        font-family: bootstrap-icons !important;
+                    }
+
+                    @include hover{
+                        background-color: color(88%);
+                    }
+                    &:active{
+                        background-color: color(88%);
+                    }
+                }
+            }
+
+            &__btn{
+                color: $color-white;
+                background-color: color();
+                font-size: 2rem;
+                font-weight: 700;
+                padding: 0.8rem 1.3rem;
+                font-family: $font-primary;
+                border: 0;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color .15s ease-in-out;
+                margin-top: 1.5rem;
+
+                @include hover{
+                    background-color: color(55%);
+                }
     
-    &:disabled{
-        background-color: color(85%);
-        cursor: not-allowed;
+                &:active{
+                    background-color: color(25%);
+                }
+
+                &:disabled{
+                    background-color: color(85%);
+                    cursor: not-allowed;
+                }
+            }
+        }
     }
 }

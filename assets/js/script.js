@@ -39,19 +39,19 @@
             if(eachIndex === $activeSlideIndex){
                 $(eachItem).addClass('active')
                 $(eachItem).css('--slide-index', 0)
-                $(eachItem).attr('data-slide-index', 0)
+                $(eachItem).attr('tabindex', 0)
             }
             else if(eachIndex > $activeSlideIndex){
                 $(eachItem).removeClass('active')
                 // $(eachItem).css('--slide-index', eachIndex - $activeSlideIndex)
                 // $(eachItem).attr('data-slide-index', eachIndex - $activeSlideIndex)
                 $(eachItem).css('--slide-index', 1)
-                $(eachItem).attr('data-slide-index', 1)
+                $(eachItem).attr('tabindex', -1)
             }
             else{
                 $(eachItem).removeClass('active')
                 $(eachItem).css('--slide-index', -1)
-                $(eachItem).attr('data-slide-index', -1)
+                $(eachItem).attr('tabindex', -1)
             }
         })
 
@@ -62,6 +62,7 @@
         }
 
         checkCurrentFormFieldsValidOrNotOnInput()
+        updateTextareaHeight()
     }
 
     function calculateVerticalHeight(){
@@ -72,7 +73,7 @@
     function checkCurrentFormFieldsValidOrNot(){
         let $currentSlidesInnerFields = $('[data-slide].active [data-form="inner"] [data-form-inner="input"]')
         let currentSlidesInnerFieldsArray = []
-        let $currentSlidesInnerFieldsRequired = $('[data-slide].active [data-form="inner"]')
+        let $currentSlidesInnerFieldsRequired = $('[data-slide].active [data-option-group]')
         $currentSlidesInnerFields.each(function(inputsIndex, inputsItem){
             if(inputsItem.type == 'checkbox'){
                 if(typeof $currentSlidesInnerFieldsRequired.data('input-required') !== 'undefined'){
@@ -102,6 +103,13 @@
         let $currentSlidesInnerFields = $('[data-slide].active [data-form="inner"] [data-form-inner="input"]')
         $currentSlidesInnerFields.on('input', function(){
             checkCurrentFormFieldsValidOrNot()
+        })
+    }
+
+    function updateTextareaHeight(){
+        $('[data-slide].active [data-form="inner"] textarea[data-form-inner="input"]').on('input', function(){
+            $(this).css('height', 'auto')
+            $(this).css('height', $(this).get(0).scrollHeight + 0.5 + 'px')
         })
     }
 
@@ -139,10 +147,13 @@
                 }
             })
         })
-        $('[data-slide].active [data-form="inner"] textarea[data-form-inner="input"]').on('input', function(){
-            $(this).css('height', 'auto')
-            $(this).css('height', $(this).get(0).scrollHeight + 'px')
-        })
     });
   
 })()
+
+/*
+email validation:
+    pattern="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}"
+checkbox required:
+    data-option-group data-input-required
+*/

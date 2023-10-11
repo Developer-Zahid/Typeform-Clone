@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./assets/css/style.min.css">
 </head>
 <body>
@@ -16,86 +17,198 @@
             <img class="section__aside__bg" src="https://images.unsplash.com/photo-1600595289052-bcab428c5b82" alt="flower" loading="lazy">
         </aside>
         <main class="section__main">
-            <form action="" class="form-slider" data-slider>
+            <form action="#!" class="form-slider" data-slider>
                 <div class="form-slide active" data-slide>
                     <div class="form-content" data-form="inner">
-                        <h1>Question 1 *</h1>
-                        <textarea name="text" class="input" rows="1" data-form-inner="input" required></textarea>
-                        <button type="button" data-slide-toggle="down" class="btn">Next</button>
+                        <div class="form-content__question">
+                            <div class="form-content__question__count">
+                                <i class="bi bi-arrow-right-short form-content__question__count__arrow"></i>
+                            </div>
+                            <div class="form-content__question__main">
+                                <h3 class="form-content__question__title">Question (short question) <small class="text-danger">*</small></h3>
+                                <input type="text" name="question_1" class="form-content__question__input form-content__question__input--input" data-form-inner="input" placeholder="Type your answer here..." required>
+                                <button type="button" data-slide-toggle="down" class="form-content__question__btn">
+                                    Next
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-slide" data-slide>
                     <div class="form-content" data-form="inner">
-                        <h1>Question 2 *</h1>
-                        <input type="email" name="email" class="input" data-form-inner="input" placeholder="email" pattern="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}" title="Enter a valid email address" required>
-                        <button type="button" data-slide-toggle="down" class="btn">Next</button>
-                    </div>
-                </div>
-                <div class="form-slide" data-slide>
-                    <div class="form-content" data-form="inner" data-input-required>
-                        <h1>Hello Form 3</h1>
-                        <label>
-                            <input type="checkbox" name="checkboxGroup[]" data-form-inner="input">
-                            Option 1
-                        </label>
-                        <br>
-                        <label>
-                            <input type="checkbox" name="checkboxGroup[]" data-form-inner="input">
-                            Option 2
-                        </label>
-                        <br>
-                        <label>
-                            <input type="checkbox" name="checkboxGroup[]" data-form-inner="input">
-                            Option 3
-                        </label>
-                        <br>
-                        <button type="button" data-slide-toggle="down" class="btn">Next</button>
+                        <div class="form-content__question">
+                            <div class="form-content__question__count">
+                                <i class="bi bi-arrow-right-short form-content__question__count__arrow"></i>
+                            </div>
+                            <div class="form-content__question__main">
+                                <h3 class="form-content__question__title">Question (long question)</h3>
+                                <textarea name="question_2" class="form-content__question__input form-content__question__input--textarea" data-form-inner="input" rows="1" spellcheck="false" placeholder="Type your answer here..." ></textarea>
+                                <button type="button" data-slide-toggle="down" class="form-content__question__btn">
+                                    Next
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-slide" data-slide>
                     <div class="form-content" data-form="inner">
-                        <h1>Please Select One 4</h1>
-                        <label>
-                            <input type="radio" name="yes_no" data-form-inner="input" required>
-                            <span>Yes</span>
-                        </label>
-                        <br>
-                        <label>
-                            <input type="radio" name="yes_no" data-form-inner="input" required>
-                            <span>No</span>
-                        </label>
-                        <br>
-                        <br>
-                        <button type="button" data-slide-toggle="down" class="btn">Next</button>
+                        <div class="form-content__question">
+                            <div class="form-content__question__count">
+                                <i class="bi bi-arrow-right-short form-content__question__count__arrow"></i>
+                            </div>
+                            <div class="form-content__question__main">
+                                <h3 class="form-content__question__title">Question (email) <small class="text-danger">*</small></h3>
+                                <input type="email" name="question_3" class="form-content__question__input" data-form-inner="input" placeholder="Enter your email" pattern="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}" title="Enter a valid email address" required>
+                                <button type="button" data-slide-toggle="down" class="form-content__question__btn">
+                                    Next
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-slide" data-slide>
                     <div class="form-content" data-form="inner">
-                        <h1>Hello Form 4</h1>
-                        <label>
-                            <input type="checkbox" name="checkboxGroup2[]" data-form-inner="input">
-                            Option 1
-                        </label>
-                        <br>
-                        <label>
-                            <input type="checkbox" name="checkboxGroup2[]" data-form-inner="input">
-                            Option 2
-                        </label>
-                        <br>
-                        <button type="submit" class="btn">Submit</button>
+                        <div class="form-content__question">
+                            <div class="form-content__question__count">
+                                <i class="bi bi-arrow-right-short form-content__question__count__arrow"></i>
+                            </div>
+                            <div class="form-content__question__main">
+                                <h3 class="form-content__question__title">Question (phone number) <small class="text-danger">*</small></h3>
+                                <input type="number" name="question_4" class="form-content__question__input form-content__question__input--number" data-form-inner="input" placeholder="Enter your number" title="Enter a valid phone number" required>
+                                <button type="button" data-slide-toggle="down" class="form-content__question__btn">
+                                    Next
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-slide" data-slide>
+                    <div class="form-content" data-form="inner">
+                        <div class="form-content__question">
+                            <div class="form-content__question__count">
+                                <i class="bi bi-arrow-right-short form-content__question__count__arrow"></i>
+                            </div>
+                            <div class="form-content__question__main">
+                                <h3 class="form-content__question__title">Question (multiple choice) <small class="text-danger">*</small></h3>
+                                <div class="form-content__question__option-list" data-option-group data-input-required>
+                                    <label class="form-content__question__option">
+                                        <input type="checkbox" name="question_8" value="Option 1" class="form-content__question__option__input" data-form-inner="input">
+                                        <span class="form-content__question__option__text">Option 1</span>
+                                    </label>
+                                    <label class="form-content__question__option">
+                                        <input type="checkbox" name="question_8" value="Option 2" class="form-content__question__option__input" data-form-inner="input">
+                                        <span class="form-content__question__option__text">Option 2</span>
+                                    </label>
+                                    <label class="form-content__question__option">
+                                        <input type="checkbox" name="question_8" value="Option 3" class="form-content__question__option__input" data-form-inner="input">
+                                        <span class="form-content__question__option__text">Option 3</span>
+                                    </label>
+                                    <label class="form-content__question__option">
+                                        <input type="checkbox" name="question_8" value="Option 4" class="form-content__question__option__input" data-form-inner="input">
+                                        <span class="form-content__question__option__text">Option 4</span>
+                                    </label>
+                                </div>
+                                <button type="button" data-slide-toggle="down" class="form-content__question__btn">
+                                    Next
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-slide" data-slide>
+                    <div class="form-content" data-form="inner">
+                        <div class="form-content__question">
+                            <div class="form-content__question__count">
+                                <i class="bi bi-arrow-right-short form-content__question__count__arrow"></i>
+                            </div>
+                            <div class="form-content__question__main">
+                                <h3 class="form-content__question__title">Question (single choice) <small class="text-danger">*</small></h3>
+                                <div class="form-content__question__option-list">
+                                    <label class="form-content__question__option">
+                                        <input type="radio" name="question_6" value="Option 1" class="form-content__question__option__input" data-form-inner="input" required>
+                                        <span class="form-content__question__option__text">Option 1</span>
+                                    </label>
+                                    <label class="form-content__question__option">
+                                        <input type="radio" name="question_6" value="Option 2" class="form-content__question__option__input" data-form-inner="input" required>
+                                        <span class="form-content__question__option__text">Option 2</span>
+                                    </label>
+                                </div>
+                                <button type="button" data-slide-toggle="down" class="form-content__question__btn">
+                                    Next
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-slide" data-slide>
+                    <div class="form-content" data-form="inner">
+                        <div class="form-content__question">
+                            <div class="form-content__question__count">
+                                <i class="bi bi-arrow-right-short form-content__question__count__arrow"></i>
+                            </div>
+                            <div class="form-content__question__main">
+                                <h3 class="form-content__question__title">Question (select) <small class="text-danger">*</small></h3>
+                                <select name="question_7" class="form-content__question__input form-content__question__input--select" data-form-inner="input" required>
+                                    <option value="" selected disabled>Select option</option>
+                                    <option value="option1">Option 1</option>
+                                    <option value="option2">Option 2</option>
+                                    <option value="option3">Option 3</option>
+                                </select>
+                                <button type="button" data-slide-toggle="down" class="form-content__question__btn">
+                                    Next
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-slide" data-slide>
+                    <div class="form-content" data-form="inner">
+                        <div class="form-content__question">
+                            <div class="form-content__question__count">
+                                <i class="bi bi-arrow-right-short form-content__question__count__arrow"></i>
+                            </div>
+                            <div class="form-content__question__main">
+                                <h3 class="form-content__question__title">Question (multiple choice)</h3>
+                                <div class="form-content__question__option-list">
+                                    <label class="form-content__question__option">
+                                        <input type="checkbox" name="question_8" value="Option 1" class="form-content__question__option__input" data-form-inner="input">
+                                        <span class="form-content__question__option__text">Option 1</span>
+                                    </label>
+                                    <label class="form-content__question__option">
+                                        <input type="checkbox" name="question_8" value="Option 2" class="form-content__question__option__input" data-form-inner="input">
+                                        <span class="form-content__question__option__text">Option 2</span>
+                                    </label>
+                                    <label class="form-content__question__option">
+                                        <input type="checkbox" name="question_8" value="Option 3" class="form-content__question__option__input" data-form-inner="input">
+                                        <span class="form-content__question__option__text">Option 3</span>
+                                    </label>
+                                    <label class="form-content__question__option">
+                                        <input type="checkbox" name="question_8" value="Option 4" class="form-content__question__option__input" data-form-inner="input">
+                                        <span class="form-content__question__option__text">Option 4</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="form-content__question__btn">
+                                    Submit
+                                    <i class="bi bi-send"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
             <nav class="form-navigation">
                 <button type="button" class="form-navigation__btn form-navigation__btn--up" data-slide-toggle="up">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
-                    </svg>
+                    <i class="bi bi-chevron-up"></i>
                 </button>
                 <button type="button" class="form-navigation__btn form-navigation__btn--down" data-slide-toggle="down">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                    </svg>
+                    <i class="bi bi-chevron-down"></i>
                 </button>
             </nav>
         </main>
