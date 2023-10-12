@@ -53,6 +53,22 @@ button {
   font-family: inherit;
 }
 
+/* Reset autofill input style */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: hsl(var(--color-primary-hs), var(--color-primary-l));
+  -webkit-box-shadow: 0 0 0px 100rem transparent inset;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .text-danger {
   color: var(--color-danger);
 }
