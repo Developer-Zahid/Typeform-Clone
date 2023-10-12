@@ -1,0 +1,21 @@
+{
+    "liveSassCompile.settings.autoprefix": [
+        "last 4 versions",
+        "ie >= 9",
+        "Firefox >= 5",
+        "opera >= 12",
+        "> 5%"
+    ],
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "~/../css/"
+        },
+        {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": "~/../css/"
+        }
+    ]
+}
